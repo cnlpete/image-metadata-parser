@@ -1,0 +1,22 @@
+{
+  "name": "cnlpete/imageMetadataParser",
+  "type": "library",
+  "description": "An abstraction to Exif, ITPC and XMP",
+  "keywords": ["php", "exif", "itpc"],
+  "homepage": "https://github.com/cnlpete/imageMetadataParser",
+  "license": "MIT",
+
+  "require": {
+    "php": ">=5.3.0"
+  },
+
+  "authors": [{
+    "name": "Hauke Schade"
+  }],
+
+  "autoload": {
+    "classmap": ["imageMetadataParser.php"]
+  },
+
+  "target-dir": ""
+}
