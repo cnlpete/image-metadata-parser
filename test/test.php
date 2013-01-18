@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is a part of the Image Metadata Parser Library.
+ *
+ * (c) 2013 Hauke Schade.
+ *
+ * For the full copyright and license information, please view the license.txt
+ * file that was distributed with this source code.
+ */
+
   include('../imageMetadataParser.php');
 
   echo "<html><head><title>Simple Test for ImageMetadataParser</title></head><body>\n";
