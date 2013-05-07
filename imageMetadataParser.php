@@ -21,7 +21,7 @@ class ImageMetadataParser {
   
   public static function exifAvailable() {
     $load_ext = get_loaded_extensions();
-    return in_array(exif, $load_ext);
+    return in_array('exif', $load_ext);
   }
 
   public function parseExif() {
