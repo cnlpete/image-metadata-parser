@@ -13,7 +13,7 @@
 
   echo "<html><head><title>Simple Test for ImageMetadataParser</title></head><body>\n";
 
-  $imageparser = new ImageMetadataParser('DSC_6318.JPG');
+  $imageparser = new ImageMetadataParser('test.jpg');
   if (!$imageparser->parseExif())
     echo "Parsing of EXIF failed<br />\n";
   if (!$imageparser->parseIPTC())
