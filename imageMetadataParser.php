@@ -130,6 +130,7 @@ class ImageMetadataParser {
   public function getTitle() {
     return (string)$this->aAttributes['title'];
   }
+
   public function hasThumbnail() {
     return (isset($this->aAttributes['thumbnailtype']));
   }
@@ -139,10 +140,44 @@ class ImageMetadataParser {
   public function getThumbnailContentType() {
     return $this->aAttributes['thumbnailtype'];
   }
+
   public function hasDateTime() {
     return isset($this->aAttributes['datetime']);
   }
   public function getDateTime() {
     return (int)$this->aAttributes['datetime'];
   }
+
+  public function hasGPS() {
+    return isset($this->aAttributes['gps']) &&
+            isset($this->aAttributes['gps']['GPSLongitude'][0]) &&
+            isset($this->aAttributes['gps']['GPSLatitude'][0]);
+  }
+  public function getGPS(&$dLat, &$dLong) {
+    $latFirst  = split("/", $this->aAttributes['gps']['GPSLatitude'][0]);
+    $latSecond = split("/", $this->aAttributes['gps']['GPSLatitude'][1]);
+    $latThird  = split("/", $this->aAttributes['gps']['GPSLatitude'][2]);
+
+    $latFirst  = intval($latFirst[0]) / intval($latFirst[1]);
+    $latSecond = intval($latSecond[0])/ intval($latSecond[1]);
+    $latThird  = intval($latThird[0]) / intval($latThird[1]);
+
+    $dLat = $latFirst + ($latSecond*60 + $latThird) / 3600;
+
+    $longFirst  = split("/", $this->aAttributes['gps']['GPSLongitude'][0]);
+    $longSecond = split("/", $this->aAttributes['gps']['GPSLongitude'][1]);
+    $longThird  = split("/", $this->aAttributes['gps']['GPSLongitude'][2]);
+
+    $longFirst  = intval($longFirst[0]) / intval($longFirst[1]);
+    $longSecond = intval($longSecond[0])/ intval($longSecond[1]);
+    $longThird  = intval($longThird[0]) / intval($longThird[1]);
+
+    $dLong = $longFirst + ($longSecond*60 + $longThird) / 3600;
+  }
+  public function getGPSArray() {
+    $dLat = 0.0; $dLong = 0.0;
+    $this->getGPS($dLat, $dLong);
+    return array('lat' => $dLat, 'long' => $dLong);
+  }
+
 }

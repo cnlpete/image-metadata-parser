@@ -33,4 +33,11 @@
         "' />";
   }
 
+  if ($imageparser->hasGPS()) {
+    $dLat = 0; $dLong = 0;
+    $imageparser->getGPS($dLat, $dLong);
+    echo "approximate GPS position: " .
+        "<a href='https://maps.google.com/maps?q=" . $dLat . "," . $dLong . "'>Lat: " . $dLat . " Long: " . $dLong . "</a>";
+  }
+
   echo "</body></html>";
