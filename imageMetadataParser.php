@@ -54,8 +54,13 @@ class ImageMetadataParser {
     if (isset($aArr['COMPUTED']['Thumbnail.MimeType']))
       $this->aAttributes['thumbnailtype'] = $aArr['COMPUTED']['Thumbnail.MimeType'];
 
+    // gps
     if (isset($aArr['GPS']))
       $this->aAttributes['gps'] = $aArr['GPS'];
+
+    // the exif orientation
+    if (isset($aArr['IFD0']['Orientation']))
+      $this->aAttributes['orientation'] = $aArr['IFD0']['Orientation'];
 
     return true;
   }
@@ -67,6 +72,7 @@ class ImageMetadataParser {
       return false;
 
     $iptc = iptcparse($info['APP13']);
+
     if (isset($iptc["2#120"][0])) # caption
       $this->aAttributes['title'] = trim($iptc["2#120"][0]);
     else if (isset($iptc["2#105"][0])) # headline
@@ -178,6 +184,25 @@ class ImageMetadataParser {
     $dLat = 0.0; $dLong = 0.0;
     $this->getGPS($dLat, $dLong);
     return array('lat' => $dLat, 'long' => $dLong);
+  }
+
+  public function hasOrientation() {
+    return isset($this->aAttributes['orientation']);
+  }
+  public function getOrientation() {
+    switch($this->aAttributes['orientation']) {
+      case 3:
+        return 180;
+        break;
+      case 6:
+        return -90;
+        break;
+      case 8:
+        return 90;
+        break;
+      default:
+        return 0;
+    }
   }
 
 }
