@@ -25,7 +25,7 @@ class ImageMetadataParser {
   }
 
   public function parseExif() {
-    $aArr = exif_read_data($this->sFilename, 'IDF0,THUMBNAIL', true);
+    $aArr = exif_read_data($this->sFilename, 'IFD0,THUMBNAIL', true);
     if ($aArr === false)
       return false;
 
