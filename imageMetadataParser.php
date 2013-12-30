@@ -160,9 +160,9 @@ class ImageMetadataParser {
             isset($this->aAttributes['gps']['GPSLatitude'][0]);
   }
   public function getGPS(&$dLat, &$dLong) {
-    $latFirst  = split("/", $this->aAttributes['gps']['GPSLatitude'][0]);
-    $latSecond = split("/", $this->aAttributes['gps']['GPSLatitude'][1]);
-    $latThird  = split("/", $this->aAttributes['gps']['GPSLatitude'][2]);
+    $latFirst  = explode("/", $this->aAttributes['gps']['GPSLatitude'][0]);
+    $latSecond = explode("/", $this->aAttributes['gps']['GPSLatitude'][1]);
+    $latThird  = explode("/", $this->aAttributes['gps']['GPSLatitude'][2]);
 
     $latFirst  = intval($latFirst[0]) / intval($latFirst[1]);
     $latSecond = intval($latSecond[0])/ intval($latSecond[1]);
@@ -170,9 +170,9 @@ class ImageMetadataParser {
 
     $dLat = $latFirst + ($latSecond*60 + $latThird) / 3600;
 
-    $longFirst  = split("/", $this->aAttributes['gps']['GPSLongitude'][0]);
-    $longSecond = split("/", $this->aAttributes['gps']['GPSLongitude'][1]);
-    $longThird  = split("/", $this->aAttributes['gps']['GPSLongitude'][2]);
+    $longFirst  = explode("/", $this->aAttributes['gps']['GPSLongitude'][0]);
+    $longSecond = explode("/", $this->aAttributes['gps']['GPSLongitude'][1]);
+    $longThird  = explode("/", $this->aAttributes['gps']['GPSLongitude'][2]);
 
     $longFirst  = intval($longFirst[0]) / intval($longFirst[1]);
     $longSecond = intval($longSecond[0])/ intval($longSecond[1]);
