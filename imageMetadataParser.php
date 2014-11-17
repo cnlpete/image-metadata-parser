@@ -25,7 +25,7 @@ class ImageMetadataParser {
   }
 
   public function parseExif() {
-    $aArr = exif_read_data($this->sFilename, 'IFD0,THUMBNAIL', true);
+    $aArr = @exif_read_data($this->sFilename, 'IFD0,THUMBNAIL', true);
     if ($aArr === false)
       return false;
 
@@ -66,7 +66,7 @@ class ImageMetadataParser {
   }
 
   public function parseIPTC() {
-    $aArr = exif_read_data($this->sFilename, 'IDF0', true);
+    $aArr = @exif_read_data($this->sFilename, 'IDF0', true);
     $size = getimagesize($this->sFilename, $info);
     if(!isset($info['APP13']))
       return false;
