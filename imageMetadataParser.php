@@ -190,7 +190,7 @@ class ImageMetadataParser {
     return isset($this->aAttributes['orientation']);
   }
   public function getOrientation() {
-    return $this->aAttributes['orientation']);
+    return $this->aAttributes['orientation'];
   }
 
 }
