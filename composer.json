@@ -1,5 +1,5 @@
 {
-  "name": "cnlpete/image-metadata-parser",
+  "name": "tetronomis/image-metadata-parser",
   "type": "library",
   "description": "An abstraction to Exif, ITPC and XMP",
   "keywords": ["php", "exif", "itpc"],
