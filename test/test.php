@@ -28,8 +28,10 @@
   if ($imageparser->hasOrientation())
     if ($imageparser->getOrientation() === 0)
       echo "Image is oriented properly.<br />\n";
-    else
-      echo "Image needs to be rotated with imagerotate(image, " . $imageparser->getOrientation() . ", 0);<br />\n";
+    else {
+      echo "Image needs to be rotated with <code>imagerotate(image, " . $imageparser->getOrientation() . ", 0);</code><br />\n";
+      echo "Raw orientation info is " . $imageparser->getRawOrientation() . "<br />\n";
+    }
 
   if ($imageparser->hasThumbnail()) {
     echo "<img src='data:" . 

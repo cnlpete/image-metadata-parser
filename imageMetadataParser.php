@@ -204,5 +204,8 @@ class ImageMetadataParser {
         return 0;
     }
   }
+  public function getRawOrientation() {
+    return $this->aAttributes['orientation'];
+  }
 
 }
