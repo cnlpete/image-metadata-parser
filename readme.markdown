@@ -39,11 +39,11 @@ get a thumbnail
 
 check the orientation
 
-  if ($imageparser->hasOrientation())
-    if ($imageparser->getOrientation() === 0)
-      echo "Image is oriented properly.<br />\n";
-    else
-      echo "Image needs to be rotated with imagerotate(image, " . $imageparser->getOrientation() . ", 0);<br />\n";
+    if ($imageparser->hasOrientation())
+      if ($imageparser->getOrientation() === 0)
+        echo "Image is oriented properly.<br />\n";
+      else
+        echo "Image needs to be rotated with imagerotate(image, " . $imageparser->getOrientation() . ", 0);<br />\n";
 
 get the gps coordinates
 
