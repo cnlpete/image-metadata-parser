@@ -38,7 +38,7 @@
         $imageparser->getThumbnailContentType() .
         ";base64," .
         base64_encode( $imageparser->getThumbnail() ) .
-        "' />";
+        "' /><br />\n";
   }
 
   if ($imageparser->hasGPS()) {

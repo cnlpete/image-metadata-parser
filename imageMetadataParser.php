@@ -163,22 +163,28 @@ class ImageMetadataParser {
     $latFirst  = explode("/", $this->aAttributes['gps']['GPSLatitude'][0]);
     $latSecond = explode("/", $this->aAttributes['gps']['GPSLatitude'][1]);
     $latThird  = explode("/", $this->aAttributes['gps']['GPSLatitude'][2]);
+    $latRef    = isset($this->aAttributes['gps']['GPSLatitudeRef']) ? $this->aAttributes['gps']['GPSLatitudeRef'] : 'N';
 
     $latFirst  = intval($latFirst[0]) / intval($latFirst[1]);
     $latSecond = intval($latSecond[0])/ intval($latSecond[1]);
     $latThird  = intval($latThird[0]) / intval($latThird[1]);
 
     $dLat = $latFirst + ($latSecond*60 + $latThird) / 3600;
+    if ($latRef == 'S')
+      $dLat *= -1;
 
     $longFirst  = explode("/", $this->aAttributes['gps']['GPSLongitude'][0]);
     $longSecond = explode("/", $this->aAttributes['gps']['GPSLongitude'][1]);
     $longThird  = explode("/", $this->aAttributes['gps']['GPSLongitude'][2]);
+    $longRef    = isset($this->aAttributes['gps']['GPSLongitudeRef']) ? $this->aAttributes['gps']['GPSLongitudeRef'] : 'E';
 
     $longFirst  = intval($longFirst[0]) / intval($longFirst[1]);
     $longSecond = intval($longSecond[0])/ intval($longSecond[1]);
     $longThird  = intval($longThird[0]) / intval($longThird[1]);
 
     $dLong = $longFirst + ($longSecond*60 + $longThird) / 3600;
+    if ($longRef == 'W')
+      $dLat *= -1;
   }
   public function getGPSArray() {
     $dLat = 0.0; $dLong = 0.0;
