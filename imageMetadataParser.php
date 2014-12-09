@@ -14,6 +14,8 @@ class ImageMetadataParser {
   protected $sFilename;
 
   protected $aAttributes = array();
+  
+  protected $aRaw;
 
   public function __construct($sFilename) {
     $this->sFilename = $sFilename;
@@ -28,7 +30,10 @@ class ImageMetadataParser {
     $aArr = @exif_read_data($this->sFilename, 'IFD0,THUMBNAIL', true);
     if ($aArr === false)
       return false;
-
+    
+    // Store raw data
+    $this->aRaw = $aArr;
+    
     // the date and time the image was taken
     if (isset($aArr['IFD0']['DateTime'])) {
       $iTimestamp = self::timestampFromEXIF($aArr['IFD0']['DateTime']);
@@ -71,6 +76,9 @@ class ImageMetadataParser {
     if(!isset($info['APP13']))
       return false;
 
+    // Store raw data
+    $this->aRaw = $aArr;
+    
     $iptc = iptcparse($info['APP13']);
 
     if (isset($iptc["2#120"][0])) # caption
@@ -192,5 +200,7 @@ class ImageMetadataParser {
   public function getOrientation() {
     return $this->aAttributes['orientation'];
   }
-
+  public function getRaw() {
+    return $this->aRaw;
+  }
 }
